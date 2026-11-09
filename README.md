@@ -40,18 +40,21 @@ deviation of sqrt(20) kbps gives payoffs far below the published scale.
 
 ## Main findings (see the paper for details)
 
-1. At f_z = 60 kbps our source-model equilibria are close to the published ones
-   (normal 55 zombies / payoff 215.3, Poisson 55 / 215.4, exponential 51 / 167.4).
+1. At f_z = 60 kbps our source-model fixed-parameter subgame saddles are close
+   to the published values (normal 55 zombies / payoff 215.3, Poisson 55 / 215.4,
+   exponential 51 / 167.4).
 2. We could not reproduce the published general-game result (120 zombies,
-   payoff 331.1, threshold 96 kbps). Under our reading of the source model the
-   best exponential equilibrium has 57 zombies, payoff 255.3, threshold 95 kbps,
-   and the published configuration itself scores 172.7.
+   payoff 331.1, threshold 96 kbps). The nested scan's highest-payoff exponential
+   subgame saddle has 57 zombies, payoff 255.3, and threshold 95 kbps; the
+   published configuration itself scores 172.7 under our implementation.
 3. The source model approximates the mean admitted rate of a threshold-truncated
-   flow by `mean x Pr(F < M)`. This is accurate for normal and Poisson attackers
-   but overstates exponential attackers by about 3x. With exact truncated means
-   the analytical model agrees with the Monte Carlo simulation to within about
-   two payoff points everywhere we checked, and the exponential attacker
-   becomes the weakest family (best equilibrium about 62, not 255).
+   flow by `mean x Pr(F <= M)`. This can overstate admitted exponential traffic
+   by about 3x. Replacing it with the exact truncated first moment brings the
+   analytical payoff within two points of simulation at the eight selected
+   parameter points tested. The nested search's exponential subgame result falls
+   to about 62. Neither model variant has a pure saddle in the combined
+   simultaneous game on the baseline finite grid; mixed strategies were not
+   computed.
 
 ## Limitations
 
